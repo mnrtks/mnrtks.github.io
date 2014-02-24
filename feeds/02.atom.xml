@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>mnrtks's blog</title><link href="http://blog.mnrtks.jp/" rel="alternate"></link><link href="http://blog.mnrtks.jp/feeds/02.atom.xml" rel="self"></link><id>http://blog.mnrtks.jp/</id><updated>2014-02-24T22:10:00+09:00</updated><entry><title>gvmを用いてRevelの開発環境を作成</title><link href="http://blog.mnrtks.jp/posts/2014/02/24/gvm-revel/" rel="alternate"></link><updated>2014-02-24T22:10:00+09:00</updated><author><name>Minoru Takase</name></author><id>tag:blog.mnrtks.jp,2014-02-24:posts/2014/02/24/gvm-revel/</id><summary type="html">&lt;div class="section" id="revelgopath"&gt;
+&lt;h2&gt;RevelのGOPATH問題&lt;/h2&gt;
+&lt;p&gt;Goのフレームワーク &lt;a class="reference external" href="http://robfig.github.io/revel/"&gt;Revel&lt;/a&gt; を用いた開発では作成するアプリケーションを$GOPATH上に配置しなくてはいけない。
+好きなファイルパス上でアプリケーションを開発したい場合、都度$GOPATHを切り替えないといけないのはちょっと面倒くさい。そこで &lt;a class="reference external" href="https://github.com/moovweb/gvm"&gt;gvm(Go Version Manager)&lt;/a&gt; のpkgset機能を用いて簡単に$GOPATHを管理し好きなディレクトリで開発できるようにする。&lt;/p&gt;
+&lt;p&gt;gvmはRubyのRVMと同様のもので複数のGoのバージョンのインストールや切り替えを手軽にできるようにするツール。&lt;/p&gt;
+&lt;p&gt;ちなみにMacでのみ動作を確認。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="gvm"&gt;
+&lt;h2&gt;gvmのインストール&lt;/h2&gt;
+&lt;p&gt;以下のコマンドを実行するだけ。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ bash &amp;lt; &amp;lt;(curl -s https://raw.github.com/moovweb/gvm/master/binscripts/gvm-installer)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="go"&gt;
+&lt;h2&gt;Goのインストール&lt;/h2&gt;
+&lt;p&gt;インストール可能なGoのバージョンを確認するには以下のコマンドで。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ gvm listall
+
+gvm gos (available)
+
+   go1
+   go1.0.1
+   go1.0.2
+   go1.0.3
+   go1.1
+   go1.1.1
+   go1.1.2
+   go1.1rc2
+   go1.1rc3
+   go1.2
+   go1.2rc2
+   go1.2rc3
+   go1.2rc4
+   go1.2rc5
+   release
+   release.r56
+   release.r57
+   release.r57.1
+   release.r57.2
+   release.r58
+   release.r58.1
+   release.r58.2
+   release.r59
+   release.r60
+   release.r60.1
+   release.r60.2
+   release.r60.3
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;指定したバージョンのGoをインストールする。
+今回は今現在(2014/2/24)の最新の安定版v1.2をインストールすることにする。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ gvm install go1.2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;現在インストールされているGoのバージョンを確認するには以下のコマンドで。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ gvm list
+
+gvm gos (installed)
+
+=&amp;gt; go1.2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用するGoのバージョンを設定するのは以下のコマンドで。
+上でインストールしたGoのバージョンを指定する。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ gvm use go1.2
+Now using version go1.2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="pkgset"&gt;
+&lt;h2&gt;pkgsetの作成&lt;/h2&gt;
+&lt;p&gt;以下のように普通に名前を付けてpkgsetを作成しそれを使用するように設定すると…&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ gvm pkgset create sample_app
+$ gvm pkgset use sample_app
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;以下のように$GOPATHは以下のように設定されてしまう。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ echo $GOPATH
+/Users/minoru/.gvm/pkgsets/go1.2/sample_app:/Users/minoru/.gvm/pkgsets/go1.2/global
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;この状態でRevelアプリケーションを作成してしまうと…&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ go get github.com/robfig/revel
+$ revel new sample_app
+~
+~ revel! http://robfig.github.com/revel
+~
+Your application is ready:
+   /Users/minoru/.gvm/pkgsets/go1.2/sample_app/src/sample_app
+
+You can run it with:
+   revel run sample_app
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;のようになってしまい好きな場所でアプリケーションを作成できない。&lt;/p&gt;
+&lt;p&gt;そこでローカルにpkgsetを作成する。まず好きなディレクトリに移動する。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ cd ~/Projects/sample_app
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;そこでpkgsetを作成する。今度は名前を指定せずに--localオプションを付けて作成する。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ gvm pkgset create --local
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;そうすると今いるディレクトリに.gvm_localというディレクトリが作成され、以下のようにローカルパスで書かれたpkgsetが作られる。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ gvm pkgset list
+
+gvm go package sets (go1.2)
+
+  L /Users/minoru/tmp/sample_app
+    global
+=&amp;gt;  sample_app
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;そのローカルpkgsetを使用するように設定する。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ gvm pkgset use --local
+Now using version go1.2 in local package set
+Local GOPATH is now /Users/minoru/tmp/sample_app/.gvm_local
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;こうすると今いるディレクトリ$GOPATHに設定される。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ echo $GOPATH
+/Users/minoru/tmp/sample_app:/Users/minoru/tmp/sample_app/.gvm_local/pkgsets/go1.2/local:/Users/minoru/.gvm/pkgsets/go1.2/global
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;この状態でRevelアプリケーションを作成すると、今いるディレクトリにアプリケーションが作成されるようになる。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ go get github.com/robfig/revel
+$ revel new sample_app
+~
+~ revel! http://robfig.github.com/revel
+~
+Your application is ready:
+   /Users/minoru/tmp/sample_app/src/sample_app
+
+You can run it with:
+   revel run sample_app
+
+$ tree
+.
+└── src
+    └── sample_app
+        ├── app
+        │   ├── controllers
+        │   │   └── app.go
+        │   ├── init.go
+        │   └── views
+        │       ├── App
+        │       │   └── Index.html
+        │       ├── debug.html
+        │       ├── errors
+        │       │   ├── 404.html
+        │       │   └── 500.html
+        │       ├── flash.html
+        │       ├── footer.html
+        │       └── header.html
+        ├── conf
+        │   ├── app.conf
+        │   └── routes
+        ├── messages
+        │   └── sample.en
+        ├── public
+        │   ├── css
+        │   │   └── bootstrap.css
+        │   ├── img
+        │   │   ├── favicon.png
+        │   │   ├── glyphicons-halflings-white.png
+        │   │   └── glyphicons-halflings.png
+        │   └── js
+        │       └── jquery-1.9.1.min.js
+        └── tests
+            └── apptest.go
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;これでgvmの$GOPATH管理機能を使いつつ好きなディレクトリでRevelアプリを開発できるようになった。&lt;/p&gt;
+&lt;p&gt;めでたしめでたし。&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="Go"></category><category term="gvm"></category><category term="Revel"></category></entry></feed>

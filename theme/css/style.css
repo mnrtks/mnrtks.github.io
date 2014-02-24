@@ -1,7 +1,7 @@
 body {
   margin: 0 0 20px 0;
   padding: 0;
-  line-heignt: 1.4;
+  line-height: 1.4;
   background: #FAFAFA;
 }
 
@@ -38,6 +38,28 @@ a:hover {
   border-radius:0!important;
 }
 
+.menu .right.menu > .mobile.item {
+  display: none;
+}
+
+@media only screen and (max-width : 768px) {
+  .menu .right.menu > .item {
+    display: none;
+  }
+
+  .menu .right.menu > .mobile.item {
+    display: block;
+  }
+}
+
+h1, h1.ui.header {
+  font-size: 1.8rem;
+}
+h2, h2.ui.header {
+  font-size: 1.5rem;
+}
+
+
 #content {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -50,6 +72,10 @@ a:hover {
 .entry a.button {
   font-size: 0.7rem;
 }
+.entry .section {
+  margin-bottom: 28px;
+}
+
 
 .entry-title > a {
   color:inherit;
@@ -108,7 +134,7 @@ iframe.hatena-bookmark-button-frame {
  * Styles for sidebar
  */
 #sidebar {
-  /*font-size: 1.1rem;*/
+/*font-size: 1.1rem;*/
 }
 
 #sidebar ul.ui.list {
@@ -147,16 +173,16 @@ iframe.hatena-bookmark-button-frame {
 }
 
 .tag-1 {
-    font-size: 1.1rem!important;
+  font-size: 1.1rem!important;
 }
 .tag-2 {
-    font-size: 1rem!important;
+  font-size: 1rem!important;
 }
 .tag-3 {
-    font-size: 0.9rem!important;
+  font-size: 0.9rem!important;
 }
 .tag-4 {
-    font-size: 0.8rem!important;
+  font-size: 0.8rem!important;
 }
 
 .single-page {
@@ -185,12 +211,18 @@ table.highlighttable {
   margin-bottom: 10px;
   border-collapse: collapse;
 }
+table.highlighttable,
+div.highlight {
+  font-size: 0.8rem;
+}
 table.highlighttable .linenodiv,
-table.highlighttable .highlight {
+table.highlighttable .highlight,
+div.highlight > pre {
   padding-top: 6px;
   padding-left: 6px;
   padding-right: 8px;
   padding-bottom: 6px;
+  overflow: auto;
 }
 table.highlighttable pre {
   margin: 0;
@@ -198,7 +230,6 @@ table.highlighttable pre {
 table.highlighttable td {
   padding:0px;
   border:solid 1px #999;
-  font-size: 0.9rem;
 }
 table.highlighttable td.linenos {
   width:1%;

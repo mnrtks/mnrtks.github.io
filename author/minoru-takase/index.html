@@ -9,7 +9,7 @@
 
   <!-- Open Graph tags -->
 
-      <meta property="fb:admins" content="100002217413846">
+      <meta property="fb:admins" content="100002217413846"/>
       <meta property="fb:app_id" content="166800936862537"/>
 
       <meta property="og:type" content="website"/>
@@ -20,13 +20,25 @@
       <meta property="og:image" content="http://blog.mnrtks.jp/images/ogp.jpeg"/>
 
   <link href="http://blog.mnrtks.jp/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="mnrtks's blog Full Atom Feed" />
+  <link href="http://blog.mnrtks.jp/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="mnrtks's blog Full RSS Feed" />
 
+  <link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
   <link rel="stylesheet" href="http://blog.mnrtks.jp/theme/css/semantic.min.css" media="all" />
   <link rel="stylesheet" href="http://blog.mnrtks.jp/theme/css/pygments.css" />
   <link rel="stylesheet" href="http://blog.mnrtks.jp/theme/css/style.css" />
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
   <script src="http://blog.mnrtks.jp/theme/js/semantic.min.js"></script>
-
+  <script>
+    $(document).ready(function() {
+      $('.sidebar-toggle').click(function() {
+        $('.ui.right.sidebar')
+          .sidebar({
+            overlay: true
+          })
+          .sidebar('toggle');
+      });
+    });
+  </script>
     <script type="text/javascript">
 
         var _gaq = _gaq || [];
@@ -43,17 +55,19 @@
         })();
 
     </script>
-
 </head>
 <body id="index" class="home">
   <nav class="ui main inverted transparent menu navbar">
     <a class="header item" href="http://blog.mnrtks.jp">mnrtks's blog (beta)</a>
 
 
-        <a class="item" href="http://blog.mnrtks.jp/pages/about/">About</a>
-
 
     <div class="right menu">
+      <div class="ui mobile item">
+        <a class="sidebar-toggle" href="#"><i class="list icon"></i></a>
+      </div>
+
+          <a class="item" href="http://blog.mnrtks.jp/pages/about/"><i class="info icon"></i>About</a>
       <a class="item" href="http://blog.mnrtks.jp/archives/"><i class="archive icon"></i>Archives</a>
     </div>
   </nav><!-- /.navbar -->
@@ -72,14 +86,59 @@
       <div class="content">
         <article class="entry">
           <header>
-            <h2 class="entry-title ui header"><a href="http://blog.mnrtks.jp/posts/2013/11/09/first/" rel="bookmark" title="Permalink to ブログ開設しました">ブログ開設しました</a></h2>
+            <h2 class="entry-title ui header"><a href="http://blog.mnrtks.jp/posts/2014/02/24/gvm-revel/" rel="bookmark" title="Permalink to gvmを用いてRevelの開発環境を作成">gvmを用いてRevelの開発環境を作成</a></h2>
           </header>
           <footer class="post-info">
-            <i class="calendar icon"></i><abbr class="published" title="2013-11-09T21:16:00">2013-11-09 (土)</abbr>
+            <i class="calendar icon"></i><abbr class="published" title="2014-02-24T22:10:00">2014-02-24 (月)</abbr>
+          </footer><!-- /.post-info -->
+          <div class="entry-content"> <p class="first last">gvmを用いてRevelの開発環境を作成する</p>
+ </div><!-- /.entry-content -->
+          <a class="mini ui black circular button" href="http://blog.mnrtks.jp/posts/2014/02/24/gvm-revel/" rel="bookmark" title="Permalink to gvmを用いてRevelの開発環境を作成">more ...</a>
+        </article>
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <article class="entry">
+          <header>
+            <h2 class="entry-title ui header"><a href="http://blog.mnrtks.jp/posts/2013/12/28/play-websocket/" rel="bookmark" title="Permalink to PlayFramework+WebSocketで送受信データを圧縮する">PlayFramework+WebSocketで送受信データを圧縮する</a></h2>
+          </header>
+          <footer class="post-info">
+            <i class="calendar icon"></i><abbr class="published" title="2013-12-28T00:15:00">2013-12-28 (土)</abbr>
+          </footer><!-- /.post-info -->
+          <div class="entry-content"> <p class="first last">Play FrameworkでWebSocketの送受信データを圧縮する機能をFrameFormatterの機能を利用していれてみました。</p>
+ </div><!-- /.entry-content -->
+          <a class="mini ui black circular button" href="http://blog.mnrtks.jp/posts/2013/12/28/play-websocket/" rel="bookmark" title="Permalink to PlayFramework+WebSocketで送受信データを圧縮する">more ...</a>
+        </article>
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <article class="entry">
+          <header>
+            <h2 class="entry-title ui header"><a href="http://blog.mnrtks.jp/posts/2013/12/08/pelican/" rel="bookmark" title="Permalink to Pelicanを選んだ理由">Pelicanを選んだ理由</a></h2>
+          </header>
+          <footer class="post-info">
+            <i class="calendar icon"></i><abbr class="published" title="2013-12-08T00:07:00">2013-12-08 (日)</abbr>
+          </footer><!-- /.post-info -->
+          <div class="entry-content"> <p class="first last">Blogを開設するのにPelicanを採用した理由</p>
+ </div><!-- /.entry-content -->
+          <a class="mini ui black circular button" href="http://blog.mnrtks.jp/posts/2013/12/08/pelican/" rel="bookmark" title="Permalink to Pelicanを選んだ理由">more ...</a>
+        </article>
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <article class="entry">
+          <header>
+            <h2 class="entry-title ui header"><a href="http://blog.mnrtks.jp/posts/2013/12/02/first/" rel="bookmark" title="Permalink to ブログ開設しました">ブログ開設しました</a></h2>
+          </header>
+          <footer class="post-info">
+            <i class="calendar icon"></i><abbr class="published" title="2013-12-02T02:50:00">2013-12-02 (月)</abbr>
           </footer><!-- /.post-info -->
           <div class="entry-content"> <p class="first last">ブログ作ってみました。</p>
  </div><!-- /.entry-content -->
-          <a class="mini ui black circular button" href="http://blog.mnrtks.jp/posts/2013/11/09/first/" rel="bookmark" title="Permalink to ブログ開設しました">more ...</a>
+          <a class="mini ui black circular button" href="http://blog.mnrtks.jp/posts/2013/12/02/first/" rel="bookmark" title="Permalink to ブログ開設しました">more ...</a>
         </article>
       </div>
     </div>
@@ -91,7 +150,7 @@
 <aside>
 <section class="profile">
   <div class="clearfix">
-    <img class="circular ui left floated image" src="http://s.gravatar.com/avatar/b6238fe1c6c0777156d8679d4604a76b?s=64" />
+    <img class="circular ui left floated image" src="http://s.gravatar.com/avatar/b6238fe1c6c0777156d8679d4604a76b?s=64" alt="" />
     <p class="name"><strong>mnrtks</strong></p>
     <p class="fullname">Minoru Takase</p>
   </div>
@@ -103,12 +162,13 @@
       <div class="item">
         <div class="content">
           <h4><i class="home icon"></i>Social</h4>
-          <div class="list">
-            <div class="item">
-              <div class="content"><a href="https://twitter.com/mnrtks"><i class="twitter sign icon"></i>twitter</a></div>
+        </div>
+        <div class="list">
+          <div class="item">
+            <div class="content"><a href="https://twitter.com/mnrtks"><i class="twitter sign icon"></i>twitter</a></div>
           </div>
-            <div class="item">
-              <div class="content"><a href="https://www.facebook.com/minoru.takase"><i class="facebook sign icon"></i>facebook</a></div>
+          <div class="item">
+            <div class="content"><a href="https://www.facebook.com/minoru.takase"><i class="facebook sign icon"></i>facebook</a></div>
           </div>
         </div>
       </div>
@@ -119,6 +179,24 @@
           <h4><i class="tags icon"></i><a href="http://blog.mnrtks.jp/tags/">Tags</a></h4>
         </div>
         <div class="list">
+            <div class="item tag-4">
+              <a href="http://blog.mnrtks.jp/tag/go/">Go</a>
+            </div>
+            <div class="item tag-4">
+              <a href="http://blog.mnrtks.jp/tag/gvm/">gvm</a>
+            </div>
+            <div class="item tag-4">
+              <a href="http://blog.mnrtks.jp/tag/scala/">Scala</a>
+            </div>
+            <div class="item tag-4">
+              <a href="http://blog.mnrtks.jp/tag/pelican/">Pelican</a>
+            </div>
+            <div class="item tag-4">
+              <a href="http://blog.mnrtks.jp/tag/play/">Play</a>
+            </div>
+            <div class="item tag-4">
+              <a href="http://blog.mnrtks.jp/tag/revel/">Revel</a>
+            </div>
         </div>
       </div>
     </div>
@@ -133,7 +211,25 @@
     <small>Copyright &copy; 2013 - Minoru Takase - Powered by <a href="http://getpelican.com/">Pelican</a></small>
   </footer>
 
-<script type="text/javascript">
+<div class="ui right sidebar inverted vertical menu">
+  <div class="header item">
+    <div class="ui mini black button sidebar-toggle">
+      <i class="right icon"></i>
+    </div>
+  </div>
+  <div class="header item">
+    <i class="browser icon"></i>Pages
+  </div>
+    <a class="item" href="http://blog.mnrtks.jp/pages/about/"><i class="info icon"></i>About</a>
+  <a class="item" href="http://blog.mnrtks.jp/archives/"><i class="archive icon"></i>Archives</a>
+  <a class="item" href="http://blog.mnrtks.jp/tags/"><i class="tags icon"></i>Tags</a>
+
+    <div class="header item">
+      <i class="home icon"></i>Social
+    </div>
+    <a class="item" href="https://twitter.com/mnrtks"><i class="twitter sign icon"></i>twitter</a>
+    <a class="item" href="https://www.facebook.com/minoru.takase"><i class="facebook sign icon"></i>facebook</a>
+</div><script type="text/javascript">
   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
   var disqus_shortname = 'mnrtks'; // required: replace example with your forum shortname
 
